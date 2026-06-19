@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f4f0e8;
+  --color-paper-muted: #e8e2d6;
+  --color-ink: #11100e;
+  --color-ink-muted: #4a4740;
+  --color-ink-faint: #7a756c;
+  --color-copper: #c45c26;
+  --color-copper-light: #e8a882;
+  --color-copper-dark: #8a3d18;
+  --color-border: #d4cdc0;
+  --color-surface: #faf8f4;
+
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    @apply bg-copper text-paper;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-copper;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .section-label {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-faint;
+  }
+
+  .display-heading {
+    @apply font-display text-ink leading-[1.05] tracking-tight;
+  }
+
+  .editorial-rule {
+    @apply h-px w-full origin-left bg-border;
+  }
+
+  .link-underline {
+    @apply relative inline-block text-ink transition-colors hover:text-copper;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-copper transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  .terminal-window {
+    @apply overflow-hidden border border-ink/15 bg-ink text-paper shadow-lg;
+  }
+
+  .terminal-chrome {
+    @apply flex items-center gap-2 border-b border-paper/10 bg-[#1a1917] px-4 py-2.5;
+  }
+
+  .terminal-dot {
+    @apply h-2 w-2 rounded-full;
+  }
+
+  .skill-card {
+    @apply relative overflow-hidden border border-border bg-surface p-6 transition-all duration-300;
+  }
+
+  .skill-card::before {
+    content: "";
+    @apply absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-copper transition-transform duration-500;
+  }
+
+  .skill-card:hover::before {
+    @apply scale-x-100;
+  }
+
+  .skill-card:hover {
+    @apply -translate-y-0.5 border-copper/25 shadow-[0_12px_40px_-20px_rgba(196,92,38,0.35)];
+  }
+
+  .problem-box {
+    @apply border-l-2 border-copper/50 bg-copper/[0.04] py-3 pl-4;
+  }
+
+  .solution-box {
+    @apply border-l-2 border-border bg-paper-muted/60 py-3 pl-4;
+  }
+}
