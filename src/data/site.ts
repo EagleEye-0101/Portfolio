@@ -6,7 +6,7 @@ export const site = {
   email: "kalim.codes@gmail.com",
   links: {
     github: "https://github.com/EagleEye-0101",
-    linkedin: "https://www.linkedin.com/in/kalimuddin-b19855319",
+    linkedin: "https://www.linkedin.com/in/kalimuddin-%E2%80%8E-b19855319/",
   },
   nav: [
     { label: "About", href: "#about" },
